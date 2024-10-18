@@ -1,4 +1,4 @@
-package com.example.pointoassignment
+package com.example.pointoassignment.Location
 
 import android.content.Context
 import android.content.Intent

@@ -1,4 +1,4 @@
-package com.example.pointoassignment
+package com.example.pointoassignment.Location
 
 import android.annotation.SuppressLint
 import android.app.Notification
@@ -11,6 +11,8 @@ import android.location.Location
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
+import com.example.pointoassignment.MainActivity
+import com.example.pointoassignment.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest

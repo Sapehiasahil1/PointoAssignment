@@ -1,32 +1,19 @@
-package com.example.pointoassignment.viewmodel
+package com.example.pointoassignment.Location.viewmodel
 
 import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
-import com.example.pointoassignment.LocationHelper
-import com.example.pointoassignment.LocationService
+import com.example.pointoassignment.Location.LocationHelper
+import com.example.pointoassignment.Location.LocationService
 
 class LocationViewModel(application: Application) : AndroidViewModel(application) {
 
     private val locationHelper = LocationHelper(application)
 
     fun checkLocationStatus(context: Context,permissionLauncher: (Array<String>) -> Unit) {
-
-//        if(locationHelper.isLocationPermissionGranted()) {
-//            if(locationHelper.isLocationEnabled()) {
-//                //Location is enabled
-//
-//                startLocationService(context)
-//
-//            } else {
-//                locationHelper.promptEnableLocation()
-//
-//            }
-//        } else {
-//            permissionLauncher(android.Manifest.permission.ACCESS_FINE_LOCATION)
-//        }
 
         val permissions = mutableListOf<String>()
 
@@ -40,10 +27,12 @@ class LocationViewModel(application: Application) : AndroidViewModel(application
         }
 
         if (permissions.isEmpty()) {
-            // No permissions needed, start location service
+
+            if(!locationHelper.isLocationEnabled()) {
+                locationHelper.promptEnableLocation()
+            } else
             startLocationService(context)
         } else {
-            // Request permissions
             permissionLauncher(permissions.toTypedArray())
         }
     }
